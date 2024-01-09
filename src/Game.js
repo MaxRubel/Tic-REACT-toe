@@ -37,6 +37,21 @@ function Game() {
   }
 
   function checkWinner() {
+    const checkTieArr = board.map((item) => {
+      return Object.values(item)[0];
+    });
+    let i = 0;
+    for (const item of checkTieArr) {
+      if (item) {
+        i++;
+      }
+    }
+    if (i === 9 && status === 'playing') {
+      setAction("IT'S A TIE!");
+      setTurn('');
+      setStatus('Game Over');
+    }
+
     const checkColumnA = board.filter((obj) => {
       const key = Object.keys(obj)[0]; // Get the key of the object
       return key.startsWith('a'); // Check if the key starts with 'a'
